@@ -1,3 +1,67 @@
+// Project data with YouTube demo links
+const projectData = {
+  1: {
+    title: "Hologram-and-body-movement-detection",
+    description: "Advanced computer vision system that detects human body movement to control holographic interfaces in real-time. This cutting-edge project combines OpenCV, MediaPipe, and 3D rendering technologies to create an immersive holographic experience controlled by natural body movements.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Computer Vision"
+  },
+  2: {
+    title: "keyboard-and-Mouse-Controls-With-hands-and-finger-Gestures",
+    description: "Revolutionary gesture control system that enables hand and finger gesture control to replace traditional mouse and keyboard input. Uses advanced hand tracking algorithms to provide seamless computer interaction without physical contact.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Gesture Control"
+  },
+  3: {
+    title: "On-Screen-Virtual-Keyboard",
+    description: "A touchless virtual keyboard operated by hand gestures for hygiene and accessibility. Perfect for public spaces, medical environments, or accessibility applications where traditional input methods aren't suitable.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "UI/UX"
+  },
+  4: {
+    title: "Scrolling-Control-With-hand-Gestures",
+    description: "Intuitive scrolling system that allows users to scroll webpages or applications using natural hand gestures. Provides smooth, responsive scrolling control without touching any surface.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Human-Computer Interaction"
+  },
+  5: {
+    title: "BuddyAi - AI For teenagers",
+    description: "AI-powered chatbot specifically designed to support and guide teenagers through conversations. Features age-appropriate responses, mental health support, and educational assistance tailored for teenage users.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "AI/ML"
+  },
+  6: {
+    title: "Scientific-calculator",
+    description: "A responsive and functional scientific calculator with advanced mathematical operations. Features a modern UI with support for complex calculations, trigonometric functions, logarithms, and more.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Web App"
+  },
+  7: {
+    title: "Authentication-System",
+    description: "Comprehensive secure login and registration system with password hashing, session management, and multi-factor authentication. Built with modern security practices and encrypted data storage.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Security"
+  },
+  8: {
+    title: "Dynamic-Responsive-Frontend-Website",
+    description: "Fully responsive website built with modern frontend frameworks and smooth animations. Features adaptive design, optimized performance, and cross-browser compatibility.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Frontend Development"
+  },
+  9: {
+    title: "AI Text Summarization using CNN data",
+    description: "Advanced NLP system that automatically summarizes CNN articles using deep learning techniques. Implements state-of-the-art transformer models for accurate and coherent text summarization.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "NLP"
+  },
+  10: {
+    title: "AI emotion detection",
+    description: "Real-time emotion detection system that analyzes human emotions using facial expression analysis. Utilizes computer vision and machine learning to identify emotions with high accuracy.",
+    videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+    category: "Computer Vision"
+  }
+};
+
 // Scroll Animation Observer
 const observerOptions = {
   threshold: 0.1,
@@ -19,9 +83,14 @@ document.querySelectorAll(".project-card, .section-header").forEach((el) => {
   observer.observe(el);
 });
 
-// Project click handlers with ripple effect
-document.querySelectorAll(".project-card").forEach((card, index) => {
+// Project click handlers with ripple effect and modal opening
+document.querySelectorAll(".project-card").forEach((card) => {
   card.addEventListener("click", function (e) {
+    // Check if the clicked element is a button or link - if so, don't interfere
+    if (e.target.closest('button, a, .btn, .buy-btn, .demo-btn')) {
+      return; // Let the button handle its own click
+    }
+
     // Create ripple effect
     const ripple = document.createElement("span");
     const rect = this.getBoundingClientRect();
@@ -40,38 +109,115 @@ document.querySelectorAll(".project-card").forEach((card, index) => {
       ripple.remove();
     }, 600);
 
-    // Navigate to project - Fixed this part
-    const projectId = this.getAttribute('data-project-id') || (index + 1);
-    console.log(`Navigating to project ${projectId}`);
-    
-    setTimeout(() => {
-      window.location.href = `price.html?project=${projectId}`;
-    }, 300); // Small delay for ripple effect
+    // Get project ID and open modal (check both data-project and fallback to index)
+    const projectId = this.getAttribute('data-project') || (Array.from(document.querySelectorAll('.project-card')).indexOf(this) + 1);
+    if (projectId && projectData[projectId]) {
+      openProjectModal(projectId);
+    }
   });
 });
 
-// Alternative method - if you have specific project buttons
+// Function to open project modal
+function openProjectModal(projectId) {
+  const project = projectData[projectId];
+  const modal = document.getElementById('projectModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
+  const modalVideo = document.getElementById('modalVideo');
+  const fullVideoLink = document.getElementById('fullVideoLink');
+  const orderProjectLink = document.getElementById('orderProjectLink');
+
+  if (modal && project) {
+    // Update modal content
+    modalTitle.textContent = project.title;
+    modalDescription.textContent = project.description;
+    
+    // Update video iframe
+    const embedUrl = `https://www.youtube.com/embed/${project.videoId}?autoplay=0&rel=0`;
+    modalVideo.src = embedUrl;
+    
+    // Update video link
+    const fullVideoUrl = `https://www.youtube.com/watch?v=${project.videoId}`;
+    fullVideoLink.href = fullVideoUrl;
+    
+    // Update order link with project ID
+    orderProjectLink.href = `price.html?project=${projectId}`;
+    
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// Function to close project modal
+function closeProjectModal() {
+  const modal = document.getElementById('projectModal');
+  const modalVideo = document.getElementById('modalVideo');
+  
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Stop video playback
+    if (modalVideo) {
+      modalVideo.src = '';
+    }
+  }
+}
+
+// Modal event listeners
 document.addEventListener('DOMContentLoaded', function() {
-  // Handle project buttons or links
-  const projectButtons = document.querySelectorAll('[data-project]');
-  projectButtons.forEach(button => {
+  const modal = document.getElementById('projectModal');
+  const modalClose = document.getElementById('modalClose');
+  
+  // Close button
+  if (modalClose) {
+    modalClose.addEventListener('click', closeProjectModal);
+  }
+  
+  // Click outside modal to close
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeProjectModal();
+      }
+    });
+  }
+  
+  // ESC key to close modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeProjectModal();
+    }
+  });
+
+  // Handle specific buttons for navigation
+  const buyButtons = document.querySelectorAll('.buy-btn, .purchase-btn, [data-action="buy"]');
+  buyButtons.forEach((button, index) => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
-      const projectId = this.getAttribute('data-project');
+      e.stopPropagation(); // Prevent card click
+      
+      const projectId = this.getAttribute('data-project-id') || 
+                       this.closest('.project-card')?.getAttribute('data-project') || 
+                       (index + 1);
+      
+      console.log(`Buy button clicked - navigating to project ${projectId}`);
       window.location.href = `price.html?project=${projectId}`;
     });
   });
 
-  // Handle project links
+  // Handle project links that should go to price page
   const projectLinks = document.querySelectorAll('a[href*="price.html"]');
   projectLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (!href.includes('project=')) {
         e.preventDefault();
-        // Try to get project ID from data attribute or other methods
+        e.stopPropagation(); // Prevent card click
+        
         const projectId = this.getAttribute('data-project-id') || 
-                         this.closest('.project-card')?.getAttribute('data-project-id') ||
+                         this.closest('.project-card')?.getAttribute('data-project') ||
                          '1';
         window.location.href = `price.html?project=${projectId}`;
       }

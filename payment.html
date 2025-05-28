@@ -237,6 +237,38 @@
             display: block;
         }
 
+        .project-info {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(106, 13, 173, 0.2);
+        }
+
+        .project-info h3 {
+            color: #9932cc;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: #e6e6fa;
+            margin-bottom: 10px;
+        }
+
+        .project-features {
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        .error-message {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
             .method-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -255,21 +287,22 @@
         </div>
 
         <div class="payment-card">
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <p>Please select a project from the pricing page first.</p>
+            </div>
+
+            <div class="project-info" id="projectInfo">
+                <!-- Project details will be populated here -->
+            </div>
+
             <div class="customer-info" id="customerInfo">
                 <h3>Customer Information</h3>
                 <!-- Customer details will be populated here -->
             </div>
 
-            <div class="order-summary">
+            <div class="order-summary" id="orderSummary">
                 <h3>Order Summary</h3>
-                <div class="order-item">
-                    <span class="item-name">React Task Manager Pro</span>
-                    <span class="item-price">₹300.00</span>
-                </div>
-                <div class="order-item">
-                    <span class="item-name">Total Amount</span>
-                    <span class="item-price">₹300.00</span>
-                </div>
+                <!-- Order details will be populated here -->
             </div>
 
             <div class="payment-methods">
@@ -305,7 +338,7 @@
             </div>
 
             <button class="pay-button" id="payButton">
-                Pay ₹300 Securely
+                Pay Securely
             </button>
         </div>
     </div>
@@ -313,39 +346,174 @@
     <script>
         // Configuration
         const API_BASE_URL = 'http://localhost:3000'; // Change this to your server URL
-        const PRODUCT_ID = 'react-task-manager-pro';
-        const AMOUNT = 30000; // ₹300 in paise
 
         let customerData = {};
+        let projectData = {};
         let razorpayOrderId = '';
 
-        // Load customer data on page load
+        // Project pricing and details configuration
+        const projectConfig = {
+            'task-manager': {
+                name: 'React Task Manager Pro',
+                description: 'Professional Task Management Solution',
+                price: 300,
+                features: ['Advanced task management', 'Team collaboration', 'Progress tracking']
+            },
+            'ecommerce': {
+                name: 'E-commerce Platform',
+                description: 'Complete Online Store Solution',
+                price: 500,
+                features: ['Product catalog', 'Shopping cart', 'Payment integration', 'Admin dashboard']
+            },
+            'social-media': {
+                name: 'Social Media Dashboard',
+                description: 'Comprehensive Social Media Management',
+                price: 400,
+                features: ['Multi-platform posting', 'Analytics dashboard', 'Content scheduling']
+            },
+            'blog': {
+                name: 'Blog Platform',
+                description: 'Modern Content Management System',
+                price: 250,
+                features: ['Rich text editor', 'SEO optimization', 'Comment system']
+            },
+            'portfolio': {
+                name: 'Portfolio Website',
+                description: 'Professional Portfolio Template',
+                price: 200,
+                features: ['Responsive design', 'Project showcase', 'Contact forms']
+            },
+            'dashboard': {
+                name: 'Admin Dashboard',
+                description: 'Comprehensive Management Interface',
+                price: 450,
+                features: ['Data visualization', 'User management', 'Real-time updates']
+            }
+        };
+
+        // Load data on page load
         window.addEventListener('load', function() {
-            loadCustomerData();
+            // Check URL parameters for project ID (fallback)
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('project');
+            
+            // If no stored data but project ID in URL, create temporary data
+            if (!loadProjectData() && projectId && projectConfig[projectId]) {
+                projectData = { id: projectId };
+                localStorage.setItem('selectedProject', JSON.stringify(projectData));
+            }
+            
+            // If still no project data, show error
+            if (!projectData.id || !projectConfig[projectData.id]) {
+                showErrorAndRedirect();
+                return;
+            }
+            
+            // Load or create dummy customer data for testing
+            if (!loadCustomerData()) {
+                customerData = {
+                    firstName: 'Test',
+                    lastName: 'User',
+                    email: 'test@example.com',
+                    phone: '9999999999'
+                };
+                localStorage.setItem('customerData', JSON.stringify(customerData));
+            }
+            
+            displayProjectInfo();
+            displayCustomerInfo();
+            displayOrderSummary();
+            updatePayButton();
         });
+
+        function loadProjectData() {
+            const data = localStorage.getItem('selectedProject');
+            if (!data) {
+                return false;
+            }
+
+            try {
+                projectData = JSON.parse(data);
+                return projectData.id && projectConfig[projectData.id];
+            } catch (error) {
+                console.error('Error parsing project data:', error);
+                return false;
+            }
+        }
 
         function loadCustomerData() {
             const data = localStorage.getItem('customerData');
             if (!data) {
-                alert('Customer data not found. Redirecting to details page.');
-                window.location.href = 'index.html';
-                return;
+                return false;
             }
 
-            customerData = JSON.parse(data);
-            displayCustomerInfo();
+            try {
+                customerData = JSON.parse(data);
+                return customerData.firstName && customerData.email;
+            } catch (error) {
+                console.error('Error parsing customer data:', error);
+                return false;
+            }
+        }
+
+        function showErrorAndRedirect() {
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('projectInfo').style.display = 'none';
+            document.getElementById('customerInfo').style.display = 'none';
+            document.getElementById('orderSummary').style.display = 'none';
+            document.getElementById('payButton').style.display = 'none';
+            
+            setTimeout(() => {
+                window.location.href = 'price.html';
+            }, 3000);
+        }
+
+        function displayProjectInfo() {
+            const config = projectConfig[projectData.id];
+            const projectInfoDiv = document.getElementById('projectInfo');
+            
+            projectInfoDiv.innerHTML = `
+                <h3>${config.name}</h3>
+                <p class="project-description">${config.description}</p>
+                <div class="project-features">
+                    <strong>Features:</strong> ${config.features.join(' • ')}
+                </div>
+            `;
         }
 
         function displayCustomerInfo() {
             const customerInfoDiv = document.getElementById('customerInfo');
             customerInfoDiv.innerHTML = `
                 <h3>Customer Information</h3>
-                <p><strong>Name:</strong> ${customerData.firstName} ${customerData.lastName}</p>
+                <p><strong>Name:</strong> ${customerData.firstName} ${customerData.lastName || ''}</p>
                 <p><strong>Email:</strong> ${customerData.email}</p>
-                <p><strong>Phone:</strong> ${customerData.phone}</p>
+                <p><strong>Phone:</strong> ${customerData.phone || 'Not provided'}</p>
                 ${customerData.city ? `<p><strong>City:</strong> ${customerData.city}</p>` : ''}
                 ${customerData.state ? `<p><strong>State:</strong> ${customerData.state}</p>` : ''}
             `;
+        }
+
+        function displayOrderSummary() {
+            const config = projectConfig[projectData.id];
+            const orderSummaryDiv = document.getElementById('orderSummary');
+            
+            orderSummaryDiv.innerHTML = `
+                <h3>Order Summary</h3>
+                <div class="order-item">
+                    <span class="item-name">${config.name}</span>
+                    <span class="item-price">₹${config.price}.00</span>
+                </div>
+                <div class="order-item">
+                    <span class="item-name">Total Amount</span>
+                    <span class="item-price">₹${config.price}.00</span>
+                </div>
+            `;
+        }
+
+        function updatePayButton() {
+            const config = projectConfig[projectData.id];
+            const payButton = document.getElementById('payButton');
+            payButton.textContent = `Pay ₹${config.price} Securely`;
         }
 
         // Payment method selection
@@ -364,6 +532,8 @@
         async function initiatePayment() {
             const payButton = document.getElementById('payButton');
             const loading = document.getElementById('loading');
+            const config = projectConfig[projectData.id];
+            const amount = config.price * 100; // Convert to paise
             
             payButton.disabled = true;
             loading.classList.add('active');
@@ -377,9 +547,10 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        amount: AMOUNT,
+                        amount: amount,
                         currency: 'INR',
-                        product_id: PRODUCT_ID
+                        product_id: projectData.id,
+                        product_name: config.name
                     })
                 });
 
@@ -397,13 +568,13 @@
                     key: 'rzp_test_1234567890', // Replace with your Razorpay key_id
                     amount: orderData.amount,
                     currency: orderData.currency,
-                    name: 'React Task Manager Pro',
-                    description: 'Professional Task Management Solution',
+                    name: config.name,
+                    description: config.description,
                     order_id: orderData.id,
                     prefill: {
-                        name: `${customerData.firstName} ${customerData.lastName}`,
+                        name: `${customerData.firstName} ${customerData.lastName || ''}`,
                         email: customerData.email,
-                        contact: customerData.phone
+                        contact: customerData.phone || ''
                     },
                     theme: {
                         color: '#6a0dad'
@@ -447,7 +618,8 @@
                         razorpay_order_id: paymentResponse.razorpay_order_id,
                         razorpay_payment_id: paymentResponse.razorpay_payment_id,
                         razorpay_signature: paymentResponse.razorpay_signature,
-                        product_id: PRODUCT_ID
+                        product_id: projectData.id,
+                        customer_data: customerData
                     })
                 });
 
@@ -462,8 +634,14 @@
                     loading.classList.remove('active');
                     showSuccessMessage();
                     
-                    // Store download URL
+                    // Store download URL and purchase info
                     localStorage.setItem('downloadUrl', verifyData.download_url);
+                    localStorage.setItem('purchaseInfo', JSON.stringify({
+                        project: projectData.id,
+                        amount: projectConfig[projectData.id].price,
+                        paymentId: paymentResponse.razorpay_payment_id,
+                        date: new Date().toISOString()
+                    }));
                     
                     // Show download option
                     setTimeout(() => {
@@ -487,24 +665,33 @@
         function showSuccessMessage() {
             const successMessage = document.getElementById('successMessage');
             const payButton = document.getElementById('payButton');
+            const config = projectConfig[projectData.id];
             
+            successMessage.innerHTML = `
+                <h3>✅ Payment Successful!</h3>
+                <p>Your ${config.name} download link has been sent to your email.</p>
+            `;
             successMessage.classList.add('active');
             payButton.style.display = 'none';
             
-            // Clear customer data
+            // Clear sensitive data but keep purchase info
             localStorage.removeItem('customerData');
+            localStorage.removeItem('selectedProject');
         }
 
-        // Health check on page load
-        fetch(`${API_BASE_URL}/health`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Server status:', data.status);
-            })
-            .catch(error => {
-                console.error('Server connection failed:', error);
-                alert('Unable to connect to payment server. Please try again later.');
-            });
+        // Health check on page load (only if data is valid)
+        if (projectData.id && customerData.email) {
+            fetch(`${API_BASE_URL}/health`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Server status:', data.status);
+                })
+                .catch(error => {
+                    console.error('Server connection failed:', error);
+                    // Don't show alert immediately, let user try payment first
+                    console.warn('Payment server may be unavailable');
+                });
+        }
     </script>
 </body>
 </html>

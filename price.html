@@ -233,7 +233,7 @@
 
 <body>
     <div class="container">
-        <a href="projects.html" class="back-btn">← Back to Projects</a>
+        <a href="#" class="back-btn" id="backBtn">← Back to Projects</a>
         <div class="header">
             <div class="logo" id="projectLogo">⚡</div>
             <h1 class="title" id="projectTitle">Project Name</h1>
@@ -385,7 +385,7 @@
                 price: "₹300",
                 logo: "🧮",
                 features: [
-                    "Complete React.js source code",
+                    "Complete  source code",
                     "Advanced mathematical functions",
                     "Graphing capabilities",
                     "Unit conversion tools",
@@ -461,6 +461,9 @@
             }
         };
 
+        // Store the current project ID for back navigation
+        let currentProjectId = null;
+
         // Get project ID from URL parameters
         function getProjectId() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -487,6 +490,14 @@
                     return pathSegments[projectIndex + 1];
                 }
 
+                // Check if we have stored project data from previous session
+                const storedData = localStorage.getItem('lastViewedProject');
+                if (storedData) {
+                    const parsedData = JSON.parse(storedData);
+                    console.log('Project ID from localStorage:', parsedData.projectId);
+                    return parsedData.projectId;
+                }
+
                 console.warn('No project ID found in URL, defaulting to project 1');
                 return '1';
             }
@@ -497,6 +508,8 @@
         // Load project configuration
         function loadProjectConfig() {
             const projectId = getProjectId();
+            currentProjectId = projectId; // Store for back navigation
+            
             let config = projectConfigs[projectId];
 
             console.log('Loading config for project:', projectId);
@@ -506,10 +519,19 @@
             if (!config) {
                 console.error(`Config not found for project ${projectId}, using default project 1`);
                 config = projectConfigs['1'];
+                currentProjectId = '1';
             }
 
+            // Store the current project info in localStorage for back navigation
+            localStorage.setItem('lastViewedProject', JSON.stringify({
+                projectId: currentProjectId,
+                title: config.title,
+                timestamp: Date.now()
+            }));
+
             // Update page elements immediately
-            updatePageElements(config, projectId);
+            updatePageElements(config, currentProjectId);
+            setupBackNavigation();
         }
 
         function updatePageElements(config, projectId) {
@@ -591,6 +613,29 @@
             console.log('Page update completed successfully');
         }
 
+        // Setup back navigation to preserve project context
+        function setupBackNavigation() {
+            const backBtn = document.getElementById('backBtn');
+            if (backBtn) {
+                // Update the href to include the current project ID
+                backBtn.href = `projects.html#project-${currentProjectId}`;
+                
+                // Also add click handler for better UX
+                backBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Store current project context before navigating back
+                    localStorage.setItem('returnToProject', JSON.stringify({
+                        projectId: currentProjectId,
+                        timestamp: Date.now()
+                    }));
+                    
+                    // Navigate back to projects page
+                    window.location.href = `projects.html#project-${currentProjectId}`;
+                });
+            }
+        }
+
         // Initialize page with multiple event listeners to ensure loading
         function initializePage() {
             console.log('Initializing page...');
@@ -638,7 +683,7 @@
                     }
 
                     // Store customer data with project info
-                    const projectId = getProjectId();
+                    const projectId = currentProjectId;
                     const config = projectConfigs[projectId] || projectConfigs['1'];
                     const customerData = {
                         projectId,
@@ -652,10 +697,11 @@
                         state: document.getElementById('state').value.trim()
                     };
 
+                    // Store customer data for payment page
                     localStorage.setItem('customerData', JSON.stringify(customerData));
 
-                    // Redirect to payment page
-                    window.location.href = 'payment.html';
+                    // Redirect to payment page with project context
+                    window.location.href = `payment.html?project=${projectId}`;
                 });
             }
         });
