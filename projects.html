@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects hub</title>
+  <link rel="stylesheet" href="./project.css" />
+  <link rel="stylesheet" href="./modal.css" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="../index.html" class="logo">JEET <span>ENTERPRISES</span></a>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="mobile-nav">
+      <div class="close-menu"></div>
+      <a href="./Software.html">Software</a>
+      <a href="index.html#innovations">Innovations</a>
+      <a href="index.html#support">Support</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-links">
+      <a href="./Software.html">Software</a>
+      <a href="index.html#innovations">Innovations</a>
+      <a href="index.html#support">Support</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Parallax Background -->
+  <div class="parallax-bg" id="parallaxBg"></div>
+
+  <!-- Projects Gallery -->
+  <section class="projects-section" id="projects">
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <div class="projects-container">
+      <div class="section-header">
+        <h2 class="section-title">Project hub</h2>
+        <p class="section-subtitle">
+          A curated selection of our most impactful projects
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card" data-project="1">
+          <div class="project-number">01</div>
+          <div class="project-content">
+            <h3 class="project-title">Hologram-and-body-movement-detection</h3>
+            <p class="project-description">
+              Detects human body movement to control holographic interfaces in real-time.
+            </p>
+            <span class="project-category">Computer Vision</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="2">
+          <div class="project-number">02</div>
+          <div class="project-content">
+            <h3 class="project-title">keyboard-and-Mouse-Cintrolls-With-hands-and-finger-Gestures</h3>
+            <p class="project-description">
+              Enables hand and finger gesture control to replace traditional mouse and keyboard input.
+            </p>
+            <span class="project-category">Gesture Control</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="3">
+          <div class="project-number">03</div>
+          <div class="project-content">
+            <h3 class="project-title">On-Screen-Virtual-Keyboard</h3>
+            <p class="project-description">
+              A touchless virtual keyboard operated by hand gestures for hygiene and accessibility.
+            </p>
+            <span class="project-category">UI/UX</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="4">
+          <div class="project-number">04</div>
+          <div class="project-content">
+            <h3 class="project-title">Scrolling-Control-With-hand-Gestures</h3>
+            <p class="project-description">
+              Allows users to scroll webpages or apps using intuitive hand gestures.
+            </p>
+            <span class="project-category">Human-Computer Interaction</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="5">
+          <div class="project-number">05</div>
+          <div class="project-content">
+            <h3 class="project-title">BuddyAi - Ai For teenagers</h3>
+            <p class="project-description">
+              AI-powered chatbot designed to support and guide teenagers through conversations.
+            </p>
+            <span class="project-category">AI/ML</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="6">
+          <div class="project-number">06</div>
+          <div class="project-content">
+            <h3 class="project-title">Scientific-calculator</h3>
+            <p class="project-description">
+              A responsive and functional scientific calculator with advanced operations.
+            </p>
+            <span class="project-category">Web App</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="7">
+          <div class="project-number">07</div>
+          <div class="project-content">
+            <h3 class="project-title">Authentication-System</h3>
+            <p class="project-description">
+              Secure login and registration system with password hashing and session management.
+            </p>
+            <span class="project-category">Security</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="8">
+          <div class="project-number">08</div>
+          <div class="project-content">
+            <h3 class="project-title">Dynamic-Responsive-Frontend-Website</h3>
+            <p class="project-description">
+              Fully responsive website built with modern frontend frameworks and animations.
+            </p>
+            <span class="project-category">Frontend Development</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="9">
+          <div class="project-number">09</div>
+          <div class="project-content">
+            <h3 class="project-title">Ai Text Summarization using CNN data</h3>
+            <p class="project-description">
+              Automatically summarizes CNN articles using NLP and deep learning techniques.
+            </p>
+            <span class="project-category">NLP</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="10">
+          <div class="project-number">10</div>
+          <div class="project-content">
+            <h3 class="project-title">Ai emotion detection</h3>
+            <p class="project-description">
+              Detects human emotions in real-time using facial expression analysis.
+            </p>
+            <span class="project-category">Computer Vision</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Project Modal -->
+      <div id="projectModal" class="modal-overlay">
+        <div class="modal-container">
+          <div class="modal-header">
+            <h2 class="modal-title" id="modalTitle">Project Name</h2>
+            <button class="modal-close" id="modalClose">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+
+          <div class="modal-content">
+            <div class="modal-section">
+              <h3 class="modal-subtitle">Project Brief</h3>
+              <p class="modal-description" id="modalDescription">
+                Project description will be loaded here...
+              </p>
+            </div>
+
+            <div class="modal-section">
+              <h3 class="modal-subtitle">Project Showcase</h3>
+              <div class="video-container">
+                <iframe id="modalVideo" src="" title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <div class="video-links">
+                <a href="#" id="fullVideoLink" class="video-link" target="_blank">
+                  Watch Full Video on YouTube
+                </a>
+              </div>
+            </div>
+
+            <div class="modal-section cta-section">
+              <h3 class="modal-subtitle">Want This Project?</h3>
+              <p class="cta-text">Do you want to make this wonderful project for yourself?</p>
+              <a href="price.html" id="orderProjectLink" class="cta-button">
+                Order This Project
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="./project.js"></script>
+      <script src="./modal.js"></script>
+</body>
+
+</html>

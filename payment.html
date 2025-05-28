@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - React Task Manager Pro</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #2d1b69 50%, #6a0dad 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #6a0dad, #9932cc);
+            border-radius: 15px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            color: #cccccc;
+        }
+
+        .payment-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(106, 13, 173, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .customer-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            border: 1px solid rgba(106, 13, 173, 0.2);
+        }
+
+        .customer-info h3 {
+            margin-bottom: 15px;
+            color: #9932cc;
+        }
+
+        .customer-info p {
+            margin-bottom: 5px;
+            color: #e6e6fa;
+        }
+
+        .order-summary {
+            margin-bottom: 30px;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(106, 13, 173, 0.2);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 18px;
+            color: #9932cc;
+        }
+
+        .item-name {
+            color: #e6e6fa;
+        }
+
+        .item-price {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .payment-methods {
+            margin-bottom: 30px;
+        }
+
+        .payment-methods h3 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .payment-method {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(106, 13, 173, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover,
+        .payment-method.active {
+            border-color: #6a0dad;
+            background: rgba(106, 13, 173, 0.1);
+        }
+
+        .method-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #9932cc;
+        }
+
+        .method-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e6e6fa;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(45deg, #6a0dad, #9932cc);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .pay-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.4);
+        }
+
+        .pay-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #9932cc;
+            margin: 20px 0;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid rgba(106, 13, 173, 0.3);
+            border-top: 3px solid #6a0dad;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e6e6fa;
+            border: 1px solid rgba(106, 13, 173, 0.3);
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .method-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="price.html" class="back-btn">← Back to Details</a>
+        
+        <div class="header">
+            <div class="logo">⚡</div>
+            <h1 class="title">Complete Your Purchase</h1>
+            <p class="subtitle">Secure payment powered by Razorpay</p>
+        </div>
+
+        <div class="payment-card">
+            <div class="customer-info" id="customerInfo">
+                <h3>Customer Information</h3>
+                <!-- Customer details will be populated here -->
+            </div>
+
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="order-item">
+                    <span class="item-name">React Task Manager Pro</span>
+                    <span class="item-price">₹300.00</span>
+                </div>
+                <div class="order-item">
+                    <span class="item-name">Total Amount</span>
+                    <span class="item-price">₹300.00</span>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <h3>Payment Methods</h3>
+                <div class="method-grid">
+                    <div class="payment-method active">
+                        <div class="method-icon">💳</div>
+                        <div class="method-name">Cards</div>
+                    </div>
+                    <div class="payment-method">
+                        <div class="method-icon">📱</div>
+                        <div class="method-name">UPI</div>
+                    </div>
+                    <div class="payment-method">
+                        <div class="method-icon">🏛️</div>
+                        <div class="method-name">Net Banking</div>
+                    </div>
+                    <div class="payment-method">
+                        <div class="method-icon">💰</div>
+                        <div class="method-name">Wallets</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Creating order...</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <h3>✅ Payment Successful!</h3>
+                <p>Your download link has been sent to your email.</p>
+            </div>
+
+            <button class="pay-button" id="payButton">
+                Pay ₹300 Securely
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://localhost:3000'; // Change this to your server URL
+        const PRODUCT_ID = 'react-task-manager-pro';
+        const AMOUNT = 30000; // ₹300 in paise
+
+        let customerData = {};
+        let razorpayOrderId = '';
+
+        // Load customer data on page load
+        window.addEventListener('load', function() {
+            loadCustomerData();
+        });
+
+        function loadCustomerData() {
+            const data = localStorage.getItem('customerData');
+            if (!data) {
+                alert('Customer data not found. Redirecting to details page.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            customerData = JSON.parse(data);
+            displayCustomerInfo();
+        }
+
+        function displayCustomerInfo() {
+            const customerInfoDiv = document.getElementById('customerInfo');
+            customerInfoDiv.innerHTML = `
+                <h3>Customer Information</h3>
+                <p><strong>Name:</strong> ${customerData.firstName} ${customerData.lastName}</p>
+                <p><strong>Email:</strong> ${customerData.email}</p>
+                <p><strong>Phone:</strong> ${customerData.phone}</p>
+                ${customerData.city ? `<p><strong>City:</strong> ${customerData.city}</p>` : ''}
+                ${customerData.state ? `<p><strong>State:</strong> ${customerData.state}</p>` : ''}
+            `;
+        }
+
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Pay button click handler
+        document.getElementById('payButton').addEventListener('click', function() {
+            initiatePayment();
+        });
+
+        async function initiatePayment() {
+            const payButton = document.getElementById('payButton');
+            const loading = document.getElementById('loading');
+            
+            payButton.disabled = true;
+            loading.classList.add('active');
+            loading.innerHTML = '<div class="spinner"></div><p>Creating order...</p>';
+
+            try {
+                // Create order on server
+                const orderResponse = await fetch(`${API_BASE_URL}/api/create-order`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: AMOUNT,
+                        currency: 'INR',
+                        product_id: PRODUCT_ID
+                    })
+                });
+
+                if (!orderResponse.ok) {
+                    throw new Error('Failed to create order');
+                }
+
+                const orderData = await orderResponse.json();
+                razorpayOrderId = orderData.id;
+
+                loading.classList.remove('active');
+                
+                // Initialize Razorpay
+                const options = {
+                    key: 'rzp_test_1234567890', // Replace with your Razorpay key_id
+                    amount: orderData.amount,
+                    currency: orderData.currency,
+                    name: 'React Task Manager Pro',
+                    description: 'Professional Task Management Solution',
+                    order_id: orderData.id,
+                    prefill: {
+                        name: `${customerData.firstName} ${customerData.lastName}`,
+                        email: customerData.email,
+                        contact: customerData.phone
+                    },
+                    theme: {
+                        color: '#6a0dad'
+                    },
+                    handler: function(response) {
+                        verifyPayment(response);
+                    },
+                    modal: {
+                        ondismiss: function() {
+                            payButton.disabled = false;
+                            console.log('Payment modal closed');
+                        }
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+
+            } catch (error) {
+                console.error('Payment initiation failed:', error);
+                loading.classList.remove('active');
+                payButton.disabled = false;
+                alert('Failed to initiate payment. Please try again.');
+            }
+        }
+
+        async function verifyPayment(paymentResponse) {
+            const loading = document.getElementById('loading');
+            const payButton = document.getElementById('payButton');
+            
+            loading.classList.add('active');
+            loading.innerHTML = '<div class="spinner"></div><p>Verifying payment...</p>';
+
+            try {
+                const verifyResponse = await fetch(`${API_BASE_URL}/api/verify-payment`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        razorpay_order_id: paymentResponse.razorpay_order_id,
+                        razorpay_payment_id: paymentResponse.razorpay_payment_id,
+                        razorpay_signature: paymentResponse.razorpay_signature,
+                        product_id: PRODUCT_ID
+                    })
+                });
+
+                if (!verifyResponse.ok) {
+                    throw new Error('Payment verification failed');
+                }
+
+                const verifyData = await verifyResponse.json();
+                
+                if (verifyData.success) {
+                    // Payment successful
+                    loading.classList.remove('active');
+                    showSuccessMessage();
+                    
+                    // Store download URL
+                    localStorage.setItem('downloadUrl', verifyData.download_url);
+                    
+                    // Show download option
+                    setTimeout(() => {
+                        if (confirm('Payment successful! Do you want to download your product now?')) {
+                            window.open(`${API_BASE_URL}${verifyData.download_url}`, '_blank');
+                        }
+                    }, 2000);
+                    
+                } else {
+                    throw new Error(verifyData.error || 'Payment verification failed');
+                }
+
+            } catch (error) {
+                console.error('Payment verification failed:', error);
+                loading.classList.remove('active');
+                payButton.disabled = false;
+                alert('Payment verification failed: ' + error.message);
+            }
+        }
+
+        function showSuccessMessage() {
+            const successMessage = document.getElementById('successMessage');
+            const payButton = document.getElementById('payButton');
+            
+            successMessage.classList.add('active');
+            payButton.style.display = 'none';
+            
+            // Clear customer data
+            localStorage.removeItem('customerData');
+        }
+
+        // Health check on page load
+        fetch(`${API_BASE_URL}/health`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server status:', data.status);
+            })
+            .catch(error => {
+                console.error('Server connection failed:', error);
+                alert('Unable to connect to payment server. Please try again later.');
+            });
+    </script>
+</body>
+</html>
