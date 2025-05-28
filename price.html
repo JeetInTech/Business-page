@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React Task Manager Pro - Purchase</title>
+    <title id="pageTitle">Project Purchase</title>
     <style>
         * {
             margin: 0;
@@ -201,15 +202,16 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
+
             .price {
                 font-size: 48px;
             }
-            
+
             .title {
                 font-size: 28px;
             }
         }
+
         .back-btn {
             background: rgba(255, 255, 255, 0.1);
             color: #e6e6fa;
@@ -228,54 +230,26 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <a href="projects.html" class="back-btn"> Back to Projects</a>
+        <a href="projects.html" class="back-btn">← Back to Projects</a>
         <div class="header">
-            <div class="logo">⚡</div>
-            <h1 class="title">React Task Manager Pro</h1>
-            <p class="subtitle">Professional Task Management Solution</p>
+            <div class="logo" id="projectLogo">⚡</div>
+            <h1 class="title" id="projectTitle">Project Name</h1>
+            <p class="subtitle" id="projectSubtitle">Professional Solution</p>
         </div>
 
         <div class="product-card">
             <div class="price-section">
-                <div class="price">₹300</div>
+                <div class="price" id="projectPrice">₹300</div>
                 <div class="price-desc">One-time purchase • Instant download</div>
             </div>
 
             <div class="features">
                 <h3>What You Get:</h3>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Complete React.js source code</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Advanced task management system</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Responsive design for all devices</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Dark/Light theme support</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Drag & drop functionality</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Priority & category management</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Local storage persistence</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-check">✓</div>
-                    <div class="feature-text">Lifetime updates included</div>
+                <div id="featuresList">
+                    <!-- Features will be populated dynamically -->
                 </div>
             </div>
         </div>
@@ -316,48 +290,376 @@
                 </div>
 
                 <button type="submit" class="buy-btn" id="proceedBtn">
-                    Proceed to Payment - ₹300
+                    Proceed to Payment - <span id="btnPrice">₹300</span>
                 </button>
             </form>
         </div>
     </div>
 
     <script>
-        document.getElementById('customerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const firstName = document.getElementById('firstName').value.trim();
-            const lastName = document.getElementById('lastName').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            
-            if (!firstName || !lastName || !email || !phone) {
-                alert('Please fill in all required fields');
-                return;
+        // Project configurations
+        const projectConfigs = {
+            1: {
+                title: "Hologram Body Movement Detection",
+                subtitle: "Advanced Computer Vision Solution",
+                price: "₹1,200",
+                logo: "🔮",
+                features: [
+                    "Complete Python source code with OpenCV",
+                    "Real-time body movement tracking algorithms",
+                    "Holographic interface integration",
+                    "3D gesture recognition system",
+                    "Multi-camera support",
+                    "Machine learning models included",
+                    "Comprehensive documentation",
+                    "Installation & setup guide"
+                ]
+            },
+            2: {
+                title: "Gesture Keyboard & Mouse Control",
+                subtitle: "Revolutionary Hand Gesture Interface",
+                price: "₹800",
+                logo: "👋",
+                features: [
+                    "Complete Python/OpenCV implementation",
+                    "Hand landmark detection system",
+                    "Customizable gesture commands",
+                    "Virtual mouse functionality",
+                    "Air typing capabilities",
+                    "Calibration tools included",
+                    "Multi-hand tracking support",
+                    "Cross-platform compatibility"
+                ]
+            },
+            3: {
+                title: "Virtual On-Screen Keyboard",
+                subtitle: "Touchless Typing Solution",
+                price: "₹600",
+                logo: "⌨️",
+                features: [
+                    "Interactive virtual keyboard interface",
+                    "Hand gesture typing recognition",
+                    "Multiple keyboard layouts",
+                    "Auto-complete functionality",
+                    "Customizable key sizes",
+                    "Sound feedback system",
+                    "Accessibility features",
+                    "Easy integration guide"
+                ]
+            },
+            4: {
+                title: "Gesture Scrolling Control",
+                subtitle: "Intuitive Navigation System",
+                price: "₹500",
+                logo: "📜",
+                features: [
+                    "Smooth scrolling algorithms",
+                    "Multi-directional gesture support",
+                    "Speed control mechanisms",
+                    "Browser integration",
+                    "Application compatibility",
+                    "Gesture customization panel",
+                    "Performance optimization",
+                    "User preference settings"
+                ]
+            },
+            5: {
+                title: "BuddyAI - Teen Support Bot",
+                subtitle: "AI-Powered Teenage Companion",
+                price: "₹1,500",
+                logo: "🤖",
+                features: [
+                    "Advanced NLP conversation engine",
+                    "Emotion detection & response",
+                    "Age-appropriate content filtering",
+                    "Mental health support features",
+                    "Educational assistance tools",
+                    "Privacy & safety protocols",
+                    "Customizable personality traits",
+                    "Parent dashboard included"
+                ]
+            },
+            6: {
+                title: "Advanced Scientific Calculator",
+                subtitle: "Feature-Rich Calculation Tool",
+                price: "₹300",
+                logo: "🧮",
+                features: [
+                    "Complete React.js source code",
+                    "Advanced mathematical functions",
+                    "Graphing capabilities",
+                    "Unit conversion tools",
+                    "History & memory functions",
+                    "Scientific notation support",
+                    "Responsive design",
+                    "Dark/Light theme toggle"
+                ]
+            },
+            7: {
+                title: "Secure Authentication System",
+                subtitle: "Enterprise-Grade Security Solution",
+                price: "₹900",
+                logo: "🔐",
+                features: [
+                    "Multi-factor authentication",
+                    "Password encryption & hashing",
+                    "Session management system",
+                    "OAuth integration support",
+                    "Role-based access control",
+                    "Security audit logging",
+                    "Password recovery system",
+                    "API documentation included"
+                ]
+            },
+            8: {
+                title: "Dynamic Responsive Website",
+                subtitle: "Modern Frontend Development",
+                price: "₹700",
+                logo: "💻",
+                features: [
+                    "Responsive design framework",
+                    "Modern CSS animations",
+                    "Interactive UI components",
+                    "Cross-browser compatibility",
+                    "Performance optimized code",
+                    "SEO-friendly structure",
+                    "Mobile-first approach",
+                    "Deployment guide included"
+                ]
+            },
+            9: {
+                title: "AI Text Summarization",
+                subtitle: "CNN Data Processing System",
+                price: "₹1,100",
+                logo: "📰",
+                features: [
+                    "Advanced NLP algorithms",
+                    "CNN article processing",
+                    "Extractive summarization",
+                    "Abstractive summarization",
+                    "Keyword extraction",
+                    "Sentiment analysis",
+                    "Batch processing support",
+                    "API integration ready"
+                ]
+            },
+            10: {
+                title: "AI Emotion Detection",
+                subtitle: "Real-time Facial Analysis",
+                price: "₹1,000",
+                logo: "😊",
+                features: [
+                    "Real-time emotion recognition",
+                    "Facial expression analysis",
+                    "Multiple emotion categories",
+                    "Confidence scoring system",
+                    "Video processing support",
+                    "Data visualization tools",
+                    "Export functionality",
+                    "Training dataset included"
+                ]
             }
-            
-            // Validate email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                return;
+        };
+
+        // Get project ID from URL parameters
+        function getProjectId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('project');
+            console.log('Full URL:', window.location.href);
+            console.log('URL params:', window.location.search);
+            console.log('Project ID found:', projectId);
+
+            // If no project ID found, try to get it from hash or other methods
+            if (!projectId) {
+                // Check if it's in the hash
+                const hash = window.location.hash;
+                if (hash.includes('project=')) {
+                    const hashProjectId = hash.split('project=')[1].split('&')[0];
+                    console.log('Project ID from hash:', hashProjectId);
+                    return hashProjectId;
+                }
+
+                // Check if it's in the pathname
+                const pathSegments = window.location.pathname.split('/');
+                const projectIndex = pathSegments.indexOf('project');
+                if (projectIndex !== -1 && pathSegments[projectIndex + 1]) {
+                    console.log('Project ID from path:', pathSegments[projectIndex + 1]);
+                    return pathSegments[projectIndex + 1];
+                }
+
+                console.warn('No project ID found in URL, defaulting to project 1');
+                return '1';
             }
-            
-            // Store customer data
-            const customerData = {
-                firstName,
-                lastName,
-                email,
-                phone,
-                city: document.getElementById('city').value.trim(),
-                state: document.getElementById('state').value.trim()
-            };
-            
-            localStorage.setItem('customerData', JSON.stringify(customerData));
-            
-            // Redirect to payment page
-            window.location.href = 'payment.html';
+
+            return projectId;
+        }
+
+        // Load project configuration
+        function loadProjectConfig() {
+            const projectId = getProjectId();
+            let config = projectConfigs[projectId];
+
+            console.log('Loading config for project:', projectId);
+            console.log('Available project configs:', Object.keys(projectConfigs));
+            console.log('Config found:', config);
+
+            if (!config) {
+                console.error(`Config not found for project ${projectId}, using default project 1`);
+                config = projectConfigs['1'];
+            }
+
+            // Update page elements immediately
+            updatePageElements(config, projectId);
+        }
+
+        function updatePageElements(config, projectId) {
+            console.log(`Updating page elements for project ${projectId}:`, config.title);
+
+            // Update page title
+            const pageTitle = document.getElementById('pageTitle');
+            if (pageTitle) {
+                pageTitle.textContent = `${config.title} - Purchase`;
+                console.log('Updated page title:', pageTitle.textContent);
+            } else {
+                console.error('Page title element not found');
+            }
+
+            // Update project title
+            const projectTitle = document.getElementById('projectTitle');
+            if (projectTitle) {
+                projectTitle.textContent = config.title;
+                console.log('Updated project title:', projectTitle.textContent);
+            } else {
+                console.error('Project title element not found');
+            }
+
+            // Update project subtitle  
+            const projectSubtitle = document.getElementById('projectSubtitle');
+            if (projectSubtitle) {
+                projectSubtitle.textContent = config.subtitle;
+                console.log('Updated project subtitle:', projectSubtitle.textContent);
+            } else {
+                console.error('Project subtitle element not found');
+            }
+
+            // Update price
+            const projectPrice = document.getElementById('projectPrice');
+            if (projectPrice) {
+                projectPrice.textContent = config.price;
+                console.log('Updated project price:', projectPrice.textContent);
+            } else {
+                console.error('Project price element not found');
+            }
+
+            // Update logo
+            const projectLogo = document.getElementById('projectLogo');
+            if (projectLogo) {
+                projectLogo.textContent = config.logo;
+                console.log('Updated project logo:', projectLogo.textContent);
+            } else {
+                console.error('Project logo element not found');
+            }
+
+            // Update button price
+            const btnPrice = document.getElementById('btnPrice');
+            if (btnPrice) {
+                btnPrice.textContent = config.price;
+                console.log('Updated button price:', btnPrice.textContent);
+            } else {
+                console.error('Button price element not found');
+            }
+
+            // Update features list
+            const featuresList = document.getElementById('featuresList');
+            if (featuresList) {
+                featuresList.innerHTML = '';
+
+                config.features.forEach((feature, index) => {
+                    const featureItem = document.createElement('div');
+                    featureItem.className = 'feature-item';
+                    featureItem.innerHTML = `
+                <div class="feature-check">✓</div>
+                <div class="feature-text">${feature}</div>
+            `;
+                    featuresList.appendChild(featureItem);
+                });
+                console.log(`Updated features list with ${config.features.length} features`);
+            } else {
+                console.error('Features list element not found');
+            }
+
+            console.log('Page update completed successfully');
+        }
+
+        // Initialize page with multiple event listeners to ensure loading
+        function initializePage() {
+            console.log('Initializing page...');
+            loadProjectConfig();
+        }
+
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePage);
+        } else {
+            // DOM is already ready
+            initializePage();
+        }
+
+        // Additional event listeners for safety
+        document.addEventListener('DOMContentLoaded', initializePage);
+        window.addEventListener('load', initializePage);
+        window.addEventListener('pageshow', initializePage);
+
+        // Also run after a short delay to ensure all elements are rendered
+        setTimeout(initializePage, 100);
+
+        // Form submission handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const customerForm = document.getElementById('customerForm');
+            if (customerForm) {
+                customerForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const firstName = document.getElementById('firstName').value.trim();
+                    const lastName = document.getElementById('lastName').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+
+                    if (!firstName || !lastName || !email || !phone) {
+                        alert('Please fill in all required fields');
+                        return;
+                    }
+
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address');
+                        return;
+                    }
+
+                    // Store customer data with project info
+                    const projectId = getProjectId();
+                    const config = projectConfigs[projectId] || projectConfigs['1'];
+                    const customerData = {
+                        projectId,
+                        projectTitle: config.title,
+                        projectPrice: config.price,
+                        firstName,
+                        lastName,
+                        email,
+                        phone,
+                        city: document.getElementById('city').value.trim(),
+                        state: document.getElementById('state').value.trim()
+                    };
+
+                    localStorage.setItem('customerData', JSON.stringify(customerData));
+
+                    // Redirect to payment page
+                    window.location.href = 'payment.html';
+                });
+            }
         });
     </script>
 </body>
+
 </html>

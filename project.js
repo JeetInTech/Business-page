@@ -20,7 +20,7 @@ document.querySelectorAll(".project-card, .section-header").forEach((el) => {
 });
 
 // Project click handlers with ripple effect
-document.querySelectorAll(".project-card").forEach((card) => {
+document.querySelectorAll(".project-card").forEach((card, index) => {
   card.addEventListener("click", function (e) {
     // Create ripple effect
     const ripple = document.createElement("span");
@@ -40,8 +40,42 @@ document.querySelectorAll(".project-card").forEach((card) => {
       ripple.remove();
     }, 600);
 
-    // Navigate to project
+    // Navigate to project - Fixed this part
+    const projectId = this.getAttribute('data-project-id') || (index + 1);
+    console.log(`Navigating to project ${projectId}`);
     
+    setTimeout(() => {
+      window.location.href = `price.html?project=${projectId}`;
+    }, 300); // Small delay for ripple effect
+  });
+});
+
+// Alternative method - if you have specific project buttons
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle project buttons or links
+  const projectButtons = document.querySelectorAll('[data-project]');
+  projectButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const projectId = this.getAttribute('data-project');
+      window.location.href = `price.html?project=${projectId}`;
+    });
+  });
+
+  // Handle project links
+  const projectLinks = document.querySelectorAll('a[href*="price.html"]');
+  projectLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (!href.includes('project=')) {
+        e.preventDefault();
+        // Try to get project ID from data attribute or other methods
+        const projectId = this.getAttribute('data-project-id') || 
+                         this.closest('.project-card')?.getAttribute('data-project-id') ||
+                         '1';
+        window.location.href = `price.html?project=${projectId}`;
+      }
+    });
   });
 });
 
@@ -75,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
 window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
@@ -84,6 +117,7 @@ window.addEventListener('scroll', function () {
         navbar.classList.remove('scrolled');
     }
 });
+
 // Enhanced scroll effects
 let ticking = false;
 
@@ -100,7 +134,9 @@ function updateScrollEffects() {
 
   // Parallax background effect
   const parallaxBg = document.getElementById("parallaxBg");
-  parallaxBg.style.transform = `translateY(${rate}px)`;
+  if (parallaxBg) {
+    parallaxBg.style.transform = `translateY(${rate}px)`;
+  }
 
   // Floating shapes parallax
   const shapes = document.querySelectorAll(".shape");
@@ -140,12 +176,14 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 // Navigation scroll effect
 window.addEventListener("scroll", () => {
   const nav = document.getElementById("nav");
-  if (window.scrollY > 100) {
-    nav.style.background = "rgba(10, 10, 10, 0.95)";
-    nav.style.backdropFilter = "blur(20px)";
-  } else {
-    nav.style.background = "rgba(10, 10, 10, 0.9)";
-    nav.style.backdropFilter = "blur(10px)";
+  if (nav) {
+    if (window.scrollY > 100) {
+      nav.style.background = "rgba(10, 10, 10, 0.95)";
+      nav.style.backdropFilter = "blur(20px)";
+    } else {
+      nav.style.background = "rgba(10, 10, 10, 0.9)";
+      nav.style.backdropFilter = "blur(10px)";
+    }
   }
 });
 

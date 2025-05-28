@@ -802,7 +802,7 @@ body.menu-open {
     background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(78, 205, 196, 0.1) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 /* Click Ripple Effect */
