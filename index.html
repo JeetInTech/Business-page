@@ -1,531 +1,923 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jeet Enterprises - Innovation Through Technology</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./bot.css" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-      <a href="#" class="logo">JEET <span>ENTERPRISES</span></a>
-      <div class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="mobile-nav">
-        <div class="close-menu"></div>
-        <a href="#innovations">Innovations</a>
-        <a href="#projects-home">Projects</a>
-        <a href="#support">Support</a>
-        
-        <a href="#contact">Contact</a>
-        <a href="./Software.html">Software</a>
-        <a href="./projects.html">Project Hub</a>
-      </div>
-      <div class="nav-links">
-        <a href="#innovations">Innovations</a>
-        <a href="#projects-home">Projects</a>
-        <a href="#support">Support</a>
-        <a href="#contact">Contact</a>
-        <a href="./Software.html">Software</a>
-        <a href="./projects.html">Project Hub</a>
-      </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-      <video id="hero-video" class="hero-video" autoplay muted playsinline>
-        <source src="./ENTERPRISE.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeet Enterprises - Innovation Through Technology</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./bot.css" />
+  <style>
+    .policy-section {
+      background: #0f0f0f;
+      padding: 80px 20px;
+      color: #ffffff;
+      display: none;
+    }
 
-      <div id="play-button" class="play-button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="64"
-          height="64"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <circle cx="12" cy="12" r="10"></circle>
-          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+    .policy-section.active {
+      display: block;
+    }
+
+    .policy-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .policy-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .policy-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #e0e0e0;
+    }
+
+    .policy-content h2 {
+      color: #667eea;
+      font-size: 1.8rem;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .policy-content h3 {
+      color: #8b9dc3;
+      font-size: 1.4rem;
+      margin: 1.5rem 0 0.8rem 0;
+    }
+
+    .policy-content ul {
+      margin: 1rem 0;
+      padding-left: 2rem;
+    }
+
+    .policy-content li {
+      margin: 0.5rem 0;
+    }
+
+    .policy-nav {
+      position: fixed;
+      top: 100px;
+      /* Adjusted to account for a typical navbar height (assumed 80px) + some spacing */
+      right: 20px;
+      z-index: 1000;
+      background: rgba(15, 15, 15, 0.9);
+      padding: 1rem;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    .policy-nav button {
+      display: block;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem 0;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .policy-nav button:hover {
+      background: #764ba2;
+    }
+
+    .policy-nav button.active {
+      background: #764ba2;
+    }
+
+    .back-to-main {
+      background: #28a745;
+      margin-top: 1rem;
+    }
+
+    .back-to-main:hover {
+      background: #218838;
+    }
+
+    @media (max-width: 768px) {
+      .policy-nav {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: 2rem;
+      }
+
+      .policy-title {
+        font-size: 2rem;
+      }
+
+      .policy-content {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#" class="logo">JEET <span>ENTERPRISES</span></a>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="mobile-nav">
+      <div class="close-menu"></div>
+      <a href="#innovations">Innovations</a>
+      <a href="#projects-home">Projects</a>
+      <a href="#support">Support</a>
+
+      <a href="#contact">Contact</a>
+      <a href="./Software.html">Software</a>
+      <a href="./projects.html">Project Hub</a>
+    </div>
+    <div class="nav-links">
+      <a href="#innovations">Innovations</a>
+      <a href="#projects-home">Projects</a>
+      <a href="#support">Support</a>
+      <a href="#contact">Contact</a>
+      <a href="./Software.html">Software</a>
+      <a href="./projects.html">Project Hub</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <video id="hero-video" class="hero-video" autoplay muted playsinline>
+      <source src="./ENTERPRISE.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div id="play-button" class="play-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="gradient-title">JEET ENTERPRISES</div>
+
+      <p class="animated-text">
+        <span>Pioneering</span>
+        <span>the</span>
+        <span>future</span>
+        <span>through</span>
+        <span>innovative</span>
+        <span>technology</span>
+        <span>solutions</span>
+      </p>
+      <button id="unmute-btn" class="unmute-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
         </svg>
-      </div>
+        Unmute
+      </button>
+    </div>
+  </section>
 
-      <div class="hero-content">
-        <div class="gradient-title">JEET ENTERPRISES</div>
+  <!-- Innovations Section -->
+  <section class="section fade-in" id="innovations">
+    <h2 class="section-title">Our Innovations</h2>
 
-        <p class="animated-text">
-          <span>Pioneering</span>
-          <span>the</span>
-          <span>future</span>
-          <span>through</span>
-          <span>innovative</span>
-          <span>technology</span>
-          <span>solutions</span>
+    <div class="section-content">
+      <div class="section-text">
+        <h3>Artificial Intelligence Solutions</h3>
+        <p>
+          At Jeet Enterprises, we're pushing the boundaries of what's possible
+          with AI. Our proprietary algorithms and machine learning models have
+          transformed industries from healthcare to finance, enabling smarter
+          decision-making and unlocking new possibilities.
         </p>
-        <button id="unmute-btn" class="unmute-button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-          </svg>
-          Unmute
-        </button>
+        <p>
+          Our team of expert engineers and data scientists collaborate to
+          develop cutting-edge solutions that solve real-world problems with
+          unprecedented accuracy and efficiency.
+        </p>
       </div>
-    </section>
-
-    <!-- Innovations Section -->
-    <section class="section fade-in" id="innovations">
-      <h2 class="section-title">Our Innovations</h2>
-
-      <div class="section-content">
-        <div class="section-text">
-          <h3>Artificial Intelligence Solutions</h3>
-          <p>
-            At Jeet Enterprises, we're pushing the boundaries of what's possible
-            with AI. Our proprietary algorithms and machine learning models have
-            transformed industries from healthcare to finance, enabling smarter
-            decision-making and unlocking new possibilities.
-          </p>
-          <p>
-            Our team of expert engineers and data scientists collaborate to
-            develop cutting-edge solutions that solve real-world problems with
-            unprecedented accuracy and efficiency.
-          </p>
-        </div>
-        <div class="section-media">
-          <img src="./1.jpg" alt="AI Innovation" />
-        </div>
-      </div>
-
-      <div class="section-content">
-        <div class="section-text">
-          <h3>Computer Vision Solutions</h3>
-          <p>
-            At Jeet Enterprises, we develop advanced computer vision
-            applications that transform the way users interact with technology.
-            Our projects include hand gesture-based mouse tracking, eye-tracking
-            systems for seamless control, and virtual keyboards operated through
-            real-time hand movements.
-          </p>
-          <p>
-            By combining image processing and AI, we build intuitive, touch-free
-            interfaces that make human-computer interaction smarter, faster, and
-            more natural across a variety of real-world applications.
-          </p>
-        </div>
-
-        <div class="section-media">
-          <img src="./2.jpg" alt="open cv" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section fade-in" id="projects-home">
-      <h2 class="section-title">Our Projects</h2>
-
-      <div class="section-content">
-        <div class="section-text">
-          <h3>Social Media Automation with AI</h3>
-          <p>
-            At Jeet Enterprises, we're simplifying digital presence with
-            intelligent social media automation. Our AI-powered system allows
-            users to post content across multiple platforms with just a single
-            click—no manual uploads or repetitive tasks required.
-          </p>
-          <p>
-            From content scheduling to platform-specific formatting, our
-            solution manages everything for you, ensuring consistent, engaging,
-            and optimized social media activity without the extra effort.
-          </p>
-        </div>
-        <div class="section-media">
-          <img src="./4.png" alt="Software Development" />
-        </div>
-      </div>
-
-      <div class="section-content">
-        <div class="section-text">
-          <h3>Voice Assistant aka Jeet</h3>
-          <p>
-            Meet Jeet, your personal AI-powered voice assistant designed to take
-            control of your computer with simple voice commands. Whether it's
-            opening settings, closing tabs, or launching applications, Jeet
-            handles it all hands-free.
-          </p>
-          <p>
-            If you're feeling lazy or just want a faster way to get things done,
-            just say the word — Jeet will take care of the rest with speed and
-            precision.
-          </p>
-        </div>
-        <div class="section-media">
-          <img src="./3.png" alt="Hardware Integration" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Support Section -->
-    <section class="section fade-in" id="support">
-      <h2 class="section-title">Our Services</h2>
-
-      <div class="section-content">
-        <div class="section-text">
-          <h3>Tech Advisory & Custom Solutions</h3>
-          <p>
-            At Jeet Enterprises, we provide expert technical consulting designed
-            to turn your ideas into scalable solutions. Whether you’re planning
-            a digital transformation, need architectural guidance for your next
-            AI deployment, or simply want to modernize legacy systems, our
-            consultants bring deep domain knowledge and innovation to every
-            engagement.
-          </p>
-          <p>
-            We collaborate closely with startups, enterprises, and academic
-            teams to design tailor-made strategies that align with your
-            goals—efficiently and effectively.
-          </p>
-        </div>
-        <div class="section-media">
-          <img src="./5.jpeg" alt="Tech Advisory" />
-        </div>
-      </div>
-
-      <div class="section-content">
-        <div class="section-text">
-          <h3>Dedicated 24/7 Technical Support</h3>
-          <p>
-            Our technology never sleeps—and neither do we. With 24/7 dedicated
-            technical support, Jeet Enterprises ensures that your systems stay
-            up and running, around the clock. Whether it’s a critical bug,
-            integration issue, or user-side confusion, our rapid response team
-            is here to assist.
-          </p>
-          <p>
-            Support plans include real-time troubleshooting, proactive
-            monitoring, and SLAs tailored to your operational needs. Peace of
-            mind, guaranteed.
-          </p>
-        </div>
-        <div class="section-media">
-          <img src="./6.jpeg" alt="24/7 Technical Support" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section contact-section fade-in" id="contact">
-      <h2 class="section-title">Contact Us</h2>
-
-      <div class="contact-container">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                ></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-            </div>
-            <div class="contact-text">
-              <h3>Email</h3>
-              <p>
-                <a href="mailto:contact@jeetenterprises.com"
-                  >jeeth.enterprises108@gmail.com</a
-                >
-              </p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                ></path>
-              </svg>
-            </div>
-            <div class="contact-text">
-              <h3>Phone</h3>
-              <p><a href="tel:+15551234567">+91 90######37</a></p>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                ></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </div>
-            <div class="contact-text">
-              <h3>LinkedIn</h3>
-              <p>
-                <a
-                  href="https://www.linkedin.com/company/106609709/admin/dashboard/"
-                  target="_blank"
-                  >linkedin.com/company/jeet-enterprises</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-message">
-          <h3>Send Us a Message</h3>
-          <form id="contact-form">
-            <div class="form-group">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Your Email"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Your Message"
-                rows="5"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <a href="#" class="logo">JEET <span>ENTERPRISES</span></a>
-          <p>Pioneering the future through innovative technology solutions</p>
-        </div>
-        <div class="footer-links">
-          <h3>Quick Links</h3>
-          <a href="#home">Home</a>
-          <a href="#projects-home">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-social">
-          <h3>Connect With Us</h3>
-          <div class="social-icons">
-            <a href="#" aria-label="LinkedIn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                ></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </a>
-            <a href="#" aria-label="Twitter">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
-                ></path>
-              </svg>
-            </a>
-            <a href="#" aria-label="Facebook">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                ></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2025 Jeet Enterprises. All rights reserved.</p>
-      </div>
-    </footer>
-
-    <!-- Projects Button -->
-    <a href="projects.html" class="projects-btn">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="currentColor"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2z"
-        />
-        <path
-          d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm1.444-.75a.75.75 0 1 0 0 1.5h5.111a.75.75 0 1 0 0-1.5H6.444zm0 3a.75.75 0 1 0 0 1.5h5.111a.75.75 0 1 0 0-1.5H6.444z"
-        />
-      </svg>
-    </a>
-
-    <!-- Floating Chat Button -->
-    <button class="chat-button" id="chatButton">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="currentColor"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"
-        />
-      </svg>
-    </button>
-
-    <!-- Chat Widget -->
-    <div class="chat-widget" id="chatWidget">
-      <!-- Chat Header -->
-      <div class="chat-header">
-        <div class="chat-header-info">
-          <div class="avatar">🤖</div>
-          <div class="header-text">
-            <h3>Jeet Assistant</h3>
-            <p>Online • Typically replies instantly</p>
-          </div>
-        </div>
-        <button class="close-btn" id="closeBtn">×</button>
-      </div>
-
-      <!-- Chat Messages -->
-      <div class="chat-messages" id="chatMessages">
-        <div class="message">
-          <div class="message-avatar bot-avatar">🤖</div>
-          <div class="message-content bot-message">
-            Hi! I'm J, your AI assistant. How can I help you today?
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Replies -->
-      <div class="quick-replies" id="quickReplies">
-        <div class="quick-reply" data-message="Tell me about your services">
-          Our Services
-        </div>
-        <div class="quick-reply" data-message="I need technical support">
-          Tech Support
-        </div>
-        <div class="quick-reply" data-message="Pricing information">
-          Pricing
-        </div>
-        <div class="quick-reply" data-message="Contact information">
-          Contact
-        </div>
-      </div>
-
-      <!-- Chat Input -->
-      <div class="chat-input">
-        <input
-          type="text"
-          class="input-field"
-          id="messageInput"
-          placeholder="Type your message..."/>
-        
-          
-          <button class="send-btn" id="sendBtn" aria-label="Send message"> ➤
-        </button>
+      <div class="section-media">
+        <img src="./1.jpg" alt="AI Innovation" />
       </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="./bot.js"></script>
-  </body>
+    <div class="section-content">
+      <div class="section-text">
+        <h3>Computer Vision Solutions</h3>
+        <p>
+          At Jeet Enterprises, we develop advanced computer vision
+          applications that transform the way users interact with technology.
+          Our projects include hand gesture-based mouse tracking, eye-tracking
+          systems for seamless control, and virtual keyboards operated through
+          real-time hand movements.
+        </p>
+        <p>
+          By combining image processing and AI, we build intuitive, touch-free
+          interfaces that make human-computer interaction smarter, faster, and
+          more natural across a variety of real-world applications.
+        </p>
+      </div>
+
+      <div class="section-media">
+        <img src="./2.jpg" alt="open cv" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section fade-in" id="projects-home">
+    <h2 class="section-title">Our Projects</h2>
+
+    <div class="section-content">
+      <div class="section-text">
+        <h3>Social Media Automation with AI</h3>
+        <p>
+          At Jeet Enterprises, we're simplifying digital presence with
+          intelligent social media automation. Our AI-powered system allows
+          users to post content across multiple platforms with just a single
+          click—no manual uploads or repetitive tasks required.
+        </p>
+        <p>
+          From content scheduling to platform-specific formatting, our
+          solution manages everything for you, ensuring consistent, engaging,
+          and optimized social media activity without the extra effort.
+        </p>
+      </div>
+      <div class="section-media">
+        <img src="./4.png" alt="Software Development" />
+      </div>
+    </div>
+
+    <div class="section-content">
+      <div class="section-text">
+        <h3>Voice Assistant aka Jeet</h3>
+        <p>
+          Meet Jeet, your personal AI-powered voice assistant designed to take
+          control of your computer with simple voice commands. Whether it's
+          opening settings, closing tabs, or launching applications, Jeet
+          handles it all hands-free.
+        </p>
+        <p>
+          If you're feeling lazy or just want a faster way to get things done,
+          just say the word — Jeet will take care of the rest with speed and
+          precision.
+        </p>
+      </div>
+      <div class="section-media">
+        <img src="./3.png" alt="Hardware Integration" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Section -->
+  <section class="section fade-in" id="support">
+    <h2 class="section-title">Our Services</h2>
+
+    <div class="section-content">
+      <div class="section-text">
+        <h3>Tech Advisory & Custom Solutions</h3>
+        <p>
+          At Jeet Enterprises, we provide expert technical consulting designed
+          to turn your ideas into scalable solutions. Whether you're planning
+          a digital transformation, need architectural guidance for your next
+          AI deployment, or simply want to modernize legacy systems, our
+          consultants bring deep domain knowledge and innovation to every
+          engagement.
+        </p>
+        <p>
+          We collaborate closely with startups, enterprises, and academic
+          teams to design tailor-made strategies that align with your
+          goals—efficiently and effectively.
+        </p>
+      </div>
+      <div class="section-media">
+        <img src="./5.jpeg" alt="Tech Advisory" />
+      </div>
+    </div>
+
+    <div class="section-content">
+      <div class="section-text">
+        <h3>Dedicated 24/7 Technical Support</h3>
+        <p>
+          Our technology never sleeps—and neither do we. With 24/7 dedicated
+          technical support, Jeet Enterprises ensures that your systems stay
+          up and running, around the clock. Whether it's a critical bug,
+          integration issue, or user-side confusion, our rapid response team
+          is here to assist.
+        </p>
+        <p>
+          Support plans include real-time troubleshooting, proactive
+          monitoring, and SLAs tailored to your operational needs. Peace of
+          mind, guaranteed.
+        </p>
+      </div>
+      <div class="section-media">
+        <img src="./6.jpeg" alt="24/7 Technical Support" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Policy Navigation -->
+  <div class="policy-nav" id="policyNav" style="display: none;">
+    <button onclick="showPolicy('privacy')" id="privacyBtn">Privacy Policy</button>
+    <button onclick="showPolicy('terms')" id="termsBtn">Terms & Conditions</button>
+    <button onclick="showPolicy('refund')" id="refundBtn">Refund Policy</button>
+    <button onclick="showPolicy('shipping')" id="shippingBtn">Shipping Policy</button>
+    <button onclick="showMainContent()" class="back-to-main">Back to Main</button>
+  </div>
+
+  <!-- Privacy Policy Section -->
+  <section class="policy-section" id="privacy">
+    <div class="policy-container">
+      <h1 class="policy-title">Privacy Policy</h1>
+      <div class="policy-content">
+        <p><strong>Last Updated:</strong> January 2025</p>
+
+        <h2>Introduction</h2>
+        <p>At Jeet Enterprises, we respect your privacy and are committed to protecting your personal information. This
+          Privacy Policy explains how we collect, use, and safeguard your data when you use our digital software
+          products and services.</p>
+
+        <h2>Information We Collect</h2>
+        <h3>Personal Information</h3>
+        <ul>
+          <li>Name, email address, and contact details</li>
+          <li>Payment information (processed securely through Razorpay)</li>
+          <li>Account credentials and preferences</li>
+          <li>Communication history and support tickets</li>
+        </ul>
+
+        <h3>Technical Information</h3>
+        <ul>
+          <li>IP address, browser type, and device information</li>
+          <li>Usage analytics and software performance data</li>
+          <li>Cookies and similar tracking technologies</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <ul>
+          <li>To provide and maintain our software products</li>
+          <li>To process payments and manage subscriptions</li>
+          <li>To provide customer support and technical assistance</li>
+          <li>To improve our products and develop new features</li>
+          <li>To send important updates and notifications</li>
+        </ul>
+
+        <h2>Data Sharing and Disclosure</h2>
+        <p><strong>We do not sell, trade, or share your personal information with third parties without your explicit
+            consent, except in the following cases:</strong></p>
+        <ul>
+          <li>With service providers who assist in our operations (e.g., payment processors)</li>
+          <li>When required by law or to protect our legal rights</li>
+          <li>In case of business transfer or merger (with prior notice)</li>
+        </ul>
+
+        <h2>Data Security</h2>
+        <p>We implement industry-standard security measures to protect your data, including encryption, secure servers,
+          and regular security audits. However, no online service is 100% secure, and we cannot guarantee absolute
+          security.</p>
+
+        <h2>Your Rights</h2>
+        <ul>
+          <li>Access and review your personal information</li>
+          <li>Request correction of inaccurate data</li>
+          <li>Request deletion of your data (subject to legal requirements)</li>
+          <li>Opt-out of marketing communications</li>
+        </ul>
+
+        <h2>Contact Us</h2>
+        <p>For privacy-related questions, contact us at: <strong>jeeth.enterprises108@gmail.com</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terms and Conditions Section -->
+  <section class="policy-section" id="terms">
+    <div class="policy-container">
+      <h1 class="policy-title">Terms and Conditions</h1>
+      <div class="policy-content">
+        <p><strong>Last Updated:</strong> January 2025</p>
+
+        <h2>Agreement to Terms</h2>
+        <p>By accessing and using Jeet Enterprises' software products and services, you agree to be bound by these Terms
+          and Conditions. If you disagree with any part of these terms, you may not access our services.</p>
+
+        <h2>Description of Services</h2>
+        <p>Jeet Enterprises provides digital software solutions, including but not limited to:</p>
+        <ul>
+          <li>AI-powered software applications</li>
+          <li>Computer vision solutions</li>
+          <li>Voice assistant software</li>
+          <li>Social media automation tools</li>
+          <li>Technical consulting and support services</li>
+          <li>Software subscriptions and licenses</li>
+        </ul>
+
+        <h2>Digital Products and Licenses</h2>
+        <h3>License Grant</h3>
+        <p>We grant you a limited, non-exclusive, non-transferable license to use our software products according to the
+          specific license terms provided with each product.</p>
+
+        <h3>Restrictions</h3>
+        <ul>
+          <li>You may not reverse engineer, decompile, or disassemble our software</li>
+          <li>You may not redistribute, resell, or sublicense our products</li>
+          <li>You may not use our software for illegal or unauthorized purposes</li>
+          <li>You may not remove or modify any proprietary notices</li>
+        </ul>
+
+        <h2>Payment Terms</h2>
+        <ul>
+          <li>All payments are processed securely through Razorpay</li>
+          <li>Subscription fees are billed in advance</li>
+          <li>Prices are subject to change with 30 days' notice</li>
+          <li>Late payments may result in service suspension</li>
+        </ul>
+
+        <h2>User Responsibilities</h2>
+        <ul>
+          <li>Provide accurate and current information</li>
+          <li>Maintain the security of your account credentials</li>
+          <li>Use our services in compliance with applicable laws</li>
+          <li>Report any security vulnerabilities or issues promptly</li>
+        </ul>
+
+        <h2>Intellectual Property</h2>
+        <p>All software, content, and materials provided by Jeet Enterprises are protected by intellectual property
+          laws. We retain all rights, title, and interest in our products.</p>
+
+        <h2>Limitation of Liability</h2>
+        <p>Jeet Enterprises shall not be liable for any indirect, incidental, special, or consequential damages arising
+          from the use of our services. Our total liability is limited to the amount paid by you for the specific
+          service.</p>
+
+        <h2>Termination</h2>
+        <p>We may terminate or suspend your access to our services immediately, without prior notice, for conduct that
+          we believe violates these Terms or is harmful to other users or us.</p>
+
+        <h2>Governing Law</h2>
+        <p>These Terms are governed by the laws of India. Any disputes will be resolved in the courts of Hyderabad,
+          Telangana.</p>
+
+        <h2>Contact Information</h2>
+        <p>For questions about these Terms, contact us at: <strong>jeeth.enterprises108@gmail.com</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cancellation and Refund Policy Section -->
+  <section class="policy-section" id="refund">
+    <div class="policy-container">
+      <h1 class="policy-title">Cancellation and Refund Policy</h1>
+      <div class="policy-content">
+        <p><strong>Last Updated:</strong> January 2025</p>
+
+        <h2>Digital Products Policy</h2>
+        <p><strong>Important:</strong> All our products are digital software and services. Due to the nature of digital
+          goods, <strong>all sales are final</strong> once the product has been delivered or accessed.</p>
+
+        <h2>Subscription Services</h2>
+        <h3>Monthly Subscriptions</h3>
+        <ul>
+          <li>You can cancel your monthly subscription at any time</li>
+          <li>Cancellation takes effect at the end of your current billing cycle</li>
+          <li>You will retain access to the service until the end of the paid period</li>
+          <li>No refunds for partial months</li>
+        </ul>
+
+        <h3>Annual Subscriptions</h3>
+        <ul>
+          <li>Annual subscriptions can be cancelled within 7 days of purchase</li>
+          <li>Refunds after 7 days are not available</li>
+          <li>Pro-rated refunds are not offered for early cancellation</li>
+        </ul>
+
+        <h2>How to Cancel Your Subscription</h2>
+        <p>To cancel your subscription:</p>
+        <ul>
+          <li>Log into your account dashboard</li>
+          <li>Navigate to the "Subscription" or "Billing" section</li>
+          <li>Click on "Cancel Subscription"</li>
+          <li>Or contact our support team at <strong>jeeth.enterprises108@gmail.com</strong></li>
+        </ul>
+
+        <h2>Refund Eligibility</h2>
+        <h3>Eligible for Refund:</h3>
+        <ul>
+          <li>Technical issues preventing software from functioning (within 48 hours of purchase)</li>
+          <li>Duplicate purchases made in error</li>
+          <li>Subscription cancellations within 7 days (annual plans only)</li>
+          <li>Unauthorized transactions (with proof)</li>
+        </ul>
+
+        <h3>Not Eligible for Refund:</h3>
+        <ul>
+          <li>Change of mind after accessing the digital product</li>
+          <li>Compatibility issues with unsupported systems</li>
+          <li>Failure to read product descriptions or system requirements</li>
+          <li>Monthly subscription refunds (cancellation only)</li>
+        </ul>
+
+        <h2>Refund Process</h2>
+        <p>If you believe you're eligible for a refund:</p>
+        <ul>
+          <li>Contact our support team within 48 hours of purchase</li>
+          <li>Provide your order number and reason for refund</li>
+          <li>Allow 5-7 business days for refund processing</li>
+          <li>Refunds will be processed to your original payment method</li>
+        </ul>
+
+        <h2>Technical Support First</h2>
+        <p>Before requesting a refund for technical issues, please contact our 24/7 technical support team. Most issues
+          can be resolved quickly with proper assistance.</p>
+
+        <h2>Contact for Refunds</h2>
+        <p>Email: <strong>jeeth.enterprises108@gmail.com</strong></p>
+        <p>Subject: "Refund Request - [Order Number]"</p>
+        <p>Include: Order details, reason for refund, and any relevant screenshots</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shipping and Delivery Policy Section -->
+  <section class="policy-section" id="shipping">
+    <div class="policy-container">
+      <h1 class="policy-title">Shipping and Delivery Policy</h1>
+      <div class="policy-content">
+        <p><strong>Last Updated:</strong> January 2025</p>
+
+        <h2>Digital Delivery Only</h2>
+        <p><strong>Important Notice:</strong> Jeet Enterprises exclusively provides digital software products and
+          services. We do not sell or ship any physical products.</p>
+
+        <h2>How Digital Products Are Delivered</h2>
+        <h3>Immediate Delivery</h3>
+        <ul>
+          <li>Most software products are delivered instantly upon payment confirmation</li>
+          <li>Download links are sent to your registered email address</li>
+          <li>Access credentials are provided via email or account dashboard</li>
+          <li>Subscription services are activated immediately</li>
+        </ul>
+
+        <h3>Delivery Methods</h3>
+        <ul>
+          <li><strong>Email Delivery:</strong> Download links and license keys</li>
+          <li><strong>Account Dashboard:</strong> Access through your user portal</li>
+          <li><strong>Direct Download:</strong> Immediate access to software files</li>
+          <li><strong>Cloud Access:</strong> Web-based applications and services</li>
+        </ul>
+
+        <h2>Delivery Timeframes</h2>
+        <ul>
+          <li><strong>Software Downloads:</strong> Instant (within 5 minutes)</li>
+          <li><strong>Account Activation:</strong> Immediate upon payment</li>
+          <li><strong>Custom Solutions:</strong> 24-48 hours for setup</li>
+          <li><strong>Technical Support:</strong> Response within 2-4 hours</li>
+        </ul>
+
+        <h2>What You'll Receive</h2>
+        <h3>For Software Products:</h3>
+        <ul>
+          <li>Download links via email</li>
+          <li>Installation instructions</li>
+          <li>License keys or activation codes</li>
+          <li>User documentation and guides</li>
+          <li>Technical support contact information</li>
+        </ul>
+
+        <h3>For Subscription Services:</h3>
+        <ul>
+          <li>Account credentials</li>
+          <li>Access to online dashboard</li>
+          <li>Welcome email with getting started guide</li>
+          <li>Support and contact information</li>
+        </ul>
+
+        <h2>Delivery Issues</h2>
+        <h3>If You Don't Receive Your Product:</h3>
+        <ul>
+          <li>Check your spam/junk email folder</li>
+          <li>Verify the email address used during purchase</li>
+          <li>Contact our support team immediately</li>
+          <li>Provide your order number and payment confirmation</li>
+        </ul>
+
+        <h3>Payment Confirmation Delays:</h3>
+        <ul>
+          <li>Razorpay payments are typically instant</li>
+          <li>Bank transfers may take 2-24 hours to confirm</li>
+          <li>Products will be delivered once payment is verified</li>
+        </ul>
+
+        <h2>System Requirements</h2>
+        <p>Before purchasing, ensure your system meets the minimum requirements listed on each product page. We are not
+          responsible for compatibility issues with unsupported systems.</p>
+
+        <h2>Re-delivery</h2>
+        <p>If you lose access to your digital products:</p>
+        <ul>
+          <li>Contact support with your original order number</li>
+          <li>We can resend download links for up to 1 year after purchase</li>
+          <li>Account-based services can be recovered via email verification</li>
+        </ul>
+
+        <h2>International Customers</h2>
+        <p>Our digital products are available worldwide. There are no geographic restrictions on our software delivery.
+          All products are delivered electronically regardless of your location.</p>
+
+        <h2>Support and Assistance</h2>
+        <p>For delivery issues or questions:</p>
+        <p><strong>Email:</strong> jeeth.enterprises108@gmail.com</p>
+        <p><strong>Response Time:</strong> Within 2-4 hours during business hours</p>
+        <p><strong>24/7 Support:</strong> Available for critical delivery issues</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact-section fade-in" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="contact-text">
+            <h3>Email</h3>
+            <p>
+              <a href="mailto:contact@jeetenterprises.com">jeeth.enterprises108@gmail.com</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+          </div>
+          <div class="contact-text">
+            <h3>Phone</h3>
+            <p><a href="tel:+15551234567">+91 90######37</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </div>
+          <div class="contact-text">
+            <h3>LinkedIn</h3>
+            <p>
+              <a href="https://www.linkedin.com/company/106609709/admin/dashboard/"
+                target="_blank">linkedin.com/company/jeet-enterprises</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-message">
+        <h3>Send Us a Message</h3>
+        <form id="contact-form">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Your Email" required />
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <a href="#" class="logo">JEET <span>ENTERPRISES</span></a>
+        <p>Pioneering the future through innovative technology solutions</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a>
+        <a href="#projects-home">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h3>Legal</h3>
+        <a href="javascript:void(0)" onclick="showPolicySection('privacy')">Privacy Policy</a>
+        <a href="javascript:void(0)" onclick="showPolicySection('terms')">Terms & Conditions</a>
+        <a href="javascript:void(0)" onclick="showPolicySection('refund')">Refund Policy</a>
+        <a href="javascript:void(0)" onclick="showPolicySection('shipping')">Shipping Policy</a>
+      </div>
+      <div class="footer-social">
+        <h3>Connect With Us</h3>
+        <div class="social-icons">
+          <a href="#" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+              </path>
+            </svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Jeet Enterprises. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Projects Button -->
+  <a href="projects.html" class="projects-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+      <path
+        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2z" />
+      <path
+        d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm1.444-.75a.75.75 0 1 0 0 1.5h5.111a.75.75 0 1 0 0-1.5H6.444zm0 3a.75.75 0 1 0 0 1.5h5.111a.75.75 0 1 0 0-1.5H6.444z" />
+    </svg>
+  </a>
+
+  <!-- Floating Chat Button -->
+  <button class="chat-button" id="chatButton">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+      <path
+        d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
+    </svg>
+  </button>
+
+  <!-- Chat Widget -->
+  <div class="chat-widget" id="chatWidget">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="avatar">🤖</div>
+        <div class="header-text">
+          <h3>Jeet Assistant</h3>
+          <p>Online • Typically replies instantly</p>
+        </div>
+      </div>
+      <button class="close-btn" id="closeBtn">×</button>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="chat-messages" id="chatMessages">
+      <div class="message">
+        <div class="message-avatar bot-avatar">🤖</div>
+        <div class="message-content bot-message">
+          Hi! I'm J, your AI assistant. How can I help you today?
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Replies -->
+    <div class="quick-replies" id="quickReplies">
+      <div class="quick-reply" data-message="Tell me about your services">
+        Our Services
+      </div>
+      <div class="quick-reply" data-message="I need technical support">
+        Tech Support
+      </div>
+      <div class="quick-reply" data-message="Pricing information">
+        Pricing
+      </div>
+      <div class="quick-reply" data-message="Contact information">
+        Contact
+      </div>
+    </div>
+
+    <!-- Chat Input -->
+    <div class="chat-input">
+      <input type="text" class="input-field" id="messageInput" placeholder="Type your message..." />
+
+
+      <button class="send-btn" id="sendBtn" aria-label="Send message"> ➤
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="./bot.js"></script>
+  <script>
+    // Policy Section Navigation
+    function showPolicySection(policyId) {
+      // Hide main content
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('innovations').style.display = 'none';
+      document.getElementById('projects-home').style.display = 'none';
+      document.getElementById('support').style.display = 'none';
+      document.getElementById('contact').style.display = 'none';
+      document.querySelector('.footer').style.display = 'none';
+      document.querySelector('.projects-btn').style.display = 'none';
+      document.querySelector('.chat-button').style.display = 'none';
+
+      // Show policy navigation
+      document.getElementById('policyNav').style.display = 'block';
+
+      // Hide all policy sections
+      document.querySelectorAll('.policy-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show selected policy section
+      document.getElementById(policyId).classList.add('active');
+
+      // Update active button
+      document.querySelectorAll('.policy-nav button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById(policyId + 'Btn').classList.add('active');
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    function showPolicy(policyId) {
+      // Hide all policy sections
+      document.querySelectorAll('.policy-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show selected policy section
+      document.getElementById(policyId).classList.add('active');
+
+      // Update active button
+      document.querySelectorAll('.policy-nav button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById(policyId + 'Btn').classList.add('active');
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    function showMainContent() {
+      // Show main content
+      document.getElementById('home').style.display = 'block';
+      document.getElementById('innovations').style.display = 'block';
+      document.getElementById('projects-home').style.display = 'block';
+      document.getElementById('support').style.display = 'block';
+      document.getElementById('contact').style.display = 'block';
+      document.querySelector('.footer').style.display = 'block';
+      document.querySelector('.projects-btn').style.display = 'block';
+      document.querySelector('.chat-button').style.display = 'block';
+
+      // Hide policy navigation and sections
+      document.getElementById('policyNav').style.display = 'none';
+      document.querySelectorAll('.policy-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+
 </html>
