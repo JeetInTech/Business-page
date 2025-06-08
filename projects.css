@@ -1,0 +1,312 @@
+.project-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+
+
+.project-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.project-showcase-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  /* FIXED: Ensure cards are always visible and clickable */
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  /* Prevent any accidental hiding */
+  display: block !important;
+}
+
+.project-showcase-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.project-card-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.project-card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.3);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-card-title {
+  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.project-card-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-stat {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.project-stat-label {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-stat-value {
+  color: rgb(0, 0, 0);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.project-price {
+  color: #4ecdc4;
+}
+
+.project-downloads {
+  color: #ff6b6b;
+}
+
+.project-show-more-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 15px 40px;
+  background: linear-gradient(180deg, #000000, #ffffff);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-show-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Styles */
+.project-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.project-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.project-modal-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 20px;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.project-modal-close:hover {
+  color: #ff6b6b;
+}
+
+.project-modal-title {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-right: 40px;
+}
+
+.project-modal-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 15px;
+}
+
+.project-video-container {
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-video-container iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+}
+
+.project-purchase-btn {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 15px 40px;
+  background: #000000;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-purchase-btn:hover {
+  transform: translateY(-2px);
+  background: #333333;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* FIXED: Improved animation classes */
+.fade-in {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure visibility states are maintained */
+.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .project-modal-content {
+    margin: 10px;
+    padding: 1.5rem;
+  }
+
+  .project-modal-title {
+    font-size: 2rem;
+  }
+
+  .project-video-container iframe {
+    height: 250px;
+  }
+
+  .project-card-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

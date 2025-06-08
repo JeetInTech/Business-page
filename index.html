@@ -7,8 +7,12 @@
   <title>Jeet Enterprises - Innovation Through Technology</title>
   <link rel="stylesheet" href="./styles.css" />
   <link rel="stylesheet" href="./bot.css" />
+    <link rel="stylesheet" href="/projects.css" />
+
+
 
 </head>
+
 
 <body>
   <!-- Navigation -->
@@ -126,49 +130,123 @@
   </section>
 
   <!-- Projects Section -->
-  <section class="section fade-in" id="projects-home">
-    <h2 class="section-title">Our Projects</h2>
+   <section class="project-section fade-in" id="projects-home">
+        <h2 class="section-title">Our Projects</h2>
 
-    <div class="section-content">
-      <div class="section-text">
-        <h3>Social Media Automation with AI</h3>
-        <p>
-          At Jeet Enterprises, we're simplifying digital presence with
-          intelligent social media automation. Our AI-powered system allows
-          users to post content across multiple platforms with just a single
-          click—no manual uploads or repetitive tasks required.
-        </p>
-        <p>
-          From content scheduling to platform-specific formatting, our
-          solution manages everything for you, ensuring consistent, engaging,
-          and optimized social media activity without the extra effort.
-        </p>
-      </div>
-      <div class="section-media">
-        <img src="./4.png" alt="Software Development" />
-      </div>
+        <div class="project-cards-grid">
+            <div class="project-showcase-card" data-project="social-automation">
+                <div class="project-card-image">📱</div>
+                <div class="project-card-icon">🚀</div>
+                <h3 class="project-card-title">AI Text Summarizer</h3>
+                <div class="project-card-stats">
+                    <div class="project-stat">
+                        <div class="project-stat-label">Price</div>
+                        <div class="project-stat-value project-price">₹699</div>
+                    </div>
+                    <div class="project-stat">
+                        <div class="project-stat-label">Category</div>
+                        <div class="project-stat-value project-Category">Ai</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-showcase-card" data-project="voice-assistant">
+                <div class="project-card-image">🎙️</div>
+                <div class="project-card-icon">🎤</div>
+                <h3 class="project-card-title">AI Voice Assistant</h3>
+                <div class="project-card-stats">
+                    <div class="project-stat">
+                        <div class="project-stat-label">Price</div>
+                        <div class="project-stat-value project-price">₹0.0</div>
+                    </div>
+                    <div class="project-stat">
+                        <div class="project-stat-label">Downloads</div>
+                        <div class="project-stat-value project-Category">586</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-showcase-card" data-project="task-manager">
+                <div class="project-card-image">⌨</div>
+                <div class="project-card-icon">⌨</div>
+                <h3 class="project-card-title">Virtual On-Screen Keyboard</h3>
+                <div class="project-card-stats">
+                    <div class="project-stat">
+                        <div class="project-stat-label">Price</div>
+                        <div class="project-stat-value project-price">₹699</div>
+                    </div>
+                    <div class="project-stat">
+                        <div class="project-stat-label">Category</div>
+                        <div class="project-stat-value project-Category">Computer Vision</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="project-showcase-card" data-project="analytics-dashboard">
+                <div class="project-card-image">📊</div>
+                <div class="project-card-icon">📊</div>
+                <h3 class="project-card-title">Analytics Dashboard</h3>
+                <div class="project-card-stats">
+                    <div class="project-stat">
+                        <div class="project-stat-label">Price</div>
+                        <div class="project-stat-value project-price">$399</div>
+                    </div>
+                    <div class="project-stat">
+                        <div class="project-stat-label">Category</div>
+                        <div class="project-stat-value project-Category">876</div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Additional projects from your second data set -->
+            <!-- <div class="project-showcase-card" data-project="hologram-detection">
+                <div class="project-card-image">🔮</div>
+                <div class="project-card-icon">🔮</div>
+                <h3 class="project-card-title">Hologram Body Movement Detection</h3>
+                <div class="project-card-stats">
+                    <div class="project-stat">
+                        <div class="project-stat-label">Price</div>
+                        <div class="project-stat-value project-price">₹200</div>
+                    </div>
+                    <div class="project-stat">
+                        <div class="project-stat-label">Category</div>
+                        <div class="project-stat-value project-Category">Computer Vision</div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- <div class="project-showcase-card" data-project="gesture-control">
+                <div class="project-card-image">👋</div>
+                <div class="project-card-icon">👋</div>
+                <h3 class="project-card-title">Gesture Keyboard & Mouse Control</h3>
+                <div class="project-card-stats">
+                    <div class="project-stat">
+                        <div class="project-stat-label">Price</div>
+                        <div class="project-stat-value project-price">₹800</div>
+                    </div>
+                    <div class="project-stat">
+                        <div class="project-stat-label">Category</div>
+                        <div class="project-stat-value project-Category">Interface</div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <button class="project-show-more-btn">Show More Projects</button>
+    </section>
+    <!-- Modal -->
+    <div id="projectModal" class="project-modal" aria-hidden="true">
+        <div class="project-modal-content">
+            <span class="project-modal-close">&times;</span>
+            <h2 class="project-modal-title" id="modalTitle"></h2>
+            <div class="project-modal-description" id="modalDescription"></div>
+            <div class="project-video-container">
+                <iframe id="modalVideo" src="" allowfullscreen></iframe>
+            </div>
+            <a href="./price.html" class="project-purchase-btn" id="purchaseBtn">Proceed to Buy</a>
+        </div>
     </div>
 
-    <div class="section-content">
-      <div class="section-text">
-        <h3>Voice Assistant aka Jeet</h3>
-        <p>
-          Meet Jeet, your personal AI-powered voice assistant designed to take
-          control of your computer with simple voice commands. Whether it's
-          opening settings, closing tabs, or launching applications, Jeet
-          handles it all hands-free.
-        </p>
-        <p>
-          If you're feeling lazy or just want a faster way to get things done,
-          just say the word — Jeet will take care of the rest with speed and
-          precision.
-        </p>
-      </div>
-      <div class="section-media">
-        <img src="./3.png" alt="Hardware Integration" />
-      </div>
-    </div>
-  </section>
 
   <!-- Support Section -->
   <section class="section fade-in" id="support">
@@ -217,7 +295,6 @@
       </div>
     </div>
   </section>
-
 
   <!-- Contact Section -->
   <section class="section contact-section fade-in" id="contact">
@@ -408,16 +485,15 @@
     <!-- Chat Input -->
     <div class="chat-input">
       <input type="text" class="input-field" id="messageInput" placeholder="Type your message..." />
-
-
-      <button class="send-btn" id="sendBtn" aria-label="Send message"> ➤
-      </button>
+      <button class="send-btn" id="sendBtn" aria-label="Send message"> ➤</button>
     </div>
   </div>
 
   <script src="script.js"></script>
   <script src="./bot.js"></script>
- 
+  <script src="./projects.js"></script>
+
+
 </body>
 
 </html>

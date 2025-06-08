@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
